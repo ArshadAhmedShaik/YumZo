@@ -1,0 +1,29 @@
+{
+  "name": "yumzo",
+  "version": "1.0.0",
+  "description": "Food Ordering App!",
+  "homepage": "https://github.com/ArshadAhmedShaik/YumZo#readme",
+  "bugs": {
+    "url": "https://github.com/ArshadAhmedShaik/YumZo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArshadAhmedShaik/YumZo.git"
+  },
+  "license": "ISC",
+  "author": "Arshad",
+  "type": "module",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-image": "^2.16.1",
+    "parcel": "^2.16.1"
+  }
+}
