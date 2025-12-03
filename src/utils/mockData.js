@@ -1,4 +1,4 @@
-const dataObj = {
+const mockData = {
   dataArray: [
     {
       type: "restaurant",
@@ -1685,4 +1685,4 @@ const dataObj = {
   ],
 };
 
-export default dataObj;
+export default mockData;
