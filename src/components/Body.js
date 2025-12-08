@@ -1,20 +1,49 @@
-import Search from "./Search.js";
 import CardContainer from "./CardContainer.js";
 import Button from "./Button.js";
-import { useState } from "react";
-import mockData from "../utils/mockData.js";
-import ClearFilter from "./ClearFilter.js";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer.js";
+import Search from "./Search.js";
+import mainData from "../utils/mainData.json";
 
 const Body = () => {
-  
- const [listOfRestaurants, setListOfRestaurants] = useState(mockData?.dataArray);
-  // whenever a state variable updates, the component re-renders in React
-  return (
+  const [original, setOriginal] = useState([]);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      
+      await new Promise(
+        (resolve) => setTimeout(resolve, 400)
+      );
+
+      const data = mainData;
+
+      const restaurants =
+        data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+
+      setOriginal(restaurants);
+      setListOfRestaurants(restaurants);
+    } catch (err) {
+      console.error("Error fetching restaurants:", err);
+    }
+  };
+
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
-      <Search />
-      <Button data = {listOfRestaurants} func = {setListOfRestaurants}/>
-      <ClearFilter data = {listOfRestaurants} func = {setListOfRestaurants} />
-      <CardContainer data = {listOfRestaurants}/>
+      <Button data={listOfRestaurants} func={setListOfRestaurants} />
+      <Search
+        original={original}
+        data={listOfRestaurants}
+        func={setListOfRestaurants}
+      />
+      <CardContainer data={listOfRestaurants} />
     </div>
   );
 };

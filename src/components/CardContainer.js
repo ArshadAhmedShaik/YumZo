@@ -6,7 +6,7 @@ const CardContainer = ({
   return (
     <div id="cardContainer">
       {listOfRestaurants.map((restaurant) => (
-        <RestaurantCard key={restaurant.info.resId} resData={restaurant} />
+        <RestaurantCard key={restaurant.info.id} resData={restaurant} />
       ))}
     </div>
   );

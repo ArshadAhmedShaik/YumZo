@@ -7,20 +7,18 @@ const Button = ({
                 const filteredList  = listOfRestaurants.filter((restaurant) => {
                                 const {
                                     info: {
-                                        rating: {
-                                            rating_text: rating,
-                                        },
+                                        avgRating: rating
                                     },
                                 } = restaurant;
-                                return Number(rating) < 4.0;
+                                return rating > 4.0;
                 });
                 const sortedList = filteredList.sort((a, b) => {
-                    const ratingA = Number(a?.info?.rating?.rating_text);
-                    const ratingB = Number(b?.info?.rating?.rating_text);
+                    const ratingA = Number(a?.info?.avgRating);
+                    const ratingB = Number(b?.info?.avgRating);
                     return ratingA - ratingB;
                 });
                 setListOfRestaurants(sortedList);
-            }}>Worst Rated Restaurants</button>
+            }}>Filter Restaurants</button>
         );
 };
 
