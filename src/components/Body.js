@@ -6,6 +6,7 @@ import Search from "./Search.js";
 import mainData from "../utils/mainData.json";
 
 const Body = () => {
+  
   const [original, setOriginal] = useState([]);
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
 

@@ -5,6 +5,7 @@ import restaurantMenu from "../utils/restaurantMenu.json";
 import Shimmer from "./Shimmer.js";
 
 const RestaurantMenu = () => {
+
   const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
 
@@ -23,9 +24,11 @@ const RestaurantMenu = () => {
       });
 
       setResInfo(filtered);
+
     } catch (err) {
       console.error("Error fetching restaurant menu:", err);
     }
+
   };
 
   return resInfo === null || resInfo.length == 0 ? (
@@ -33,12 +36,12 @@ const RestaurantMenu = () => {
   ) : (
     <div className="app" id="aboutApp">
       <div id="restaurantDetails" className="container">
-        {/* Restaurant Header */}
+  
         <h1 id="restaurantTitle">
           {resInfo[0]?.data?.cards[0]?.card?.card?.text}
         </h1>
 
-        {/* Restaurant Info */}
+        
         <div id="restaurantInfo">
           <h2 id="restaurantName">
             {resInfo[0]?.data?.cards[2]?.card?.card?.info?.name}
@@ -65,7 +68,7 @@ const RestaurantMenu = () => {
           </p>
         </div>
 
-        {/* Menu Section */}
+       
         <h1 id="menuTitle">
           {
             resInfo[0]?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR

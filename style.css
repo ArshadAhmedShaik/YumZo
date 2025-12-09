@@ -564,3 +564,18 @@ body {
   text-decoration: none;
   color: inherit;
 }
+
+.user-card {
+  background-color: rgba(255, 128, 191, 0.6);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.user-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+}
