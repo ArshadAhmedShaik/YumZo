@@ -1,35 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import restaurantMenu from "../utils/restaurantMenu.json";
 import Shimmer from "./Shimmer.js";
+import useRestaurantMenu from "../utils/useRestaurantMenu.js";
+
 
 const RestaurantMenu = () => {
 
-  const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 400));
-
-      const array = restaurantMenu?.array;
-
-      const filtered = array.filter((element) => {
-        return element.data.cards[2].card.card.info.id === resId;
-      });
-
-      setResInfo(filtered);
-
-    } catch (err) {
-      console.error("Error fetching restaurant menu:", err);
-    }
-
-  };
+  const resInfo = useRestaurantMenu(resId); 
 
   return resInfo === null || resInfo.length == 0 ? (
     <Shimmer />

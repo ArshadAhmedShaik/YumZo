@@ -10,6 +10,7 @@ class Counter extends React.Component {
   }
 
   render() {
+
     const {
       data: { text },
     } = this.props;
@@ -25,7 +26,16 @@ class Counter extends React.Component {
             });
           }}
         >
-          Click Me
+          Increment 
+        </button>
+        <button onClick={
+              () => {
+                this.setState({
+                  count: this.state.count - 1
+                });
+              }
+        }>
+            Decrement 
         </button>
       </div>
     );
