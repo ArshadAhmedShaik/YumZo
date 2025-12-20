@@ -6,7 +6,6 @@ import useListOfRestaurants from "../utils/useListOfRestaurants.js";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
-
   const onlineStatus = useOnlineStatus();
   const data = useListOfRestaurants();
   const original = data[0];
@@ -14,60 +13,42 @@ const Body = () => {
   const setListOfRestaurants = data[3];
 
 
+  if (!onlineStatus) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+        
+        <div className="w-14 h-14 border-4 border-slate-700 border-t-sky-400 rounded-full animate-spin" />
 
- if (onlineStatus === false) {
+       
+        <h2 className="mt-5 text-lg font-medium text-gray-800">
+          You’re offline
+        </h2>
+
+        <p className="mt-2 text-sm text-gray-400">
+          Please check your internet connection
+        </p>
+      </div>
+    );
+  }
+
+
+  if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
+  }
+
+
   return (
-    <div
-      className="app"
-      style = {{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
-      }}
-    >
-      <div
-        style={{
-          width: "60px",
-          height: "60px",
-          border: "6px solid #334155",
-          borderTop: "6px solid #38bdf8",
-          borderRadius: "50%",
-          animation: "spin 1s linear infinite",
-        }}
-      />
-
-      <h2 style={{ marginTop: "20px", fontWeight: "500" }}>
-        You’re offline
-      </h2>
-
-      <p style={{ color: "#94a3b8", marginTop: "8px" }}>
-        Please check your internet connection
-      </p>
-
-      <style>
-        {`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}
-      </style>
-    </div>
-  );
-}
-
-
-  return listOfRestaurants.length === 0 ? (
-    <Shimmer />
-  ) : (
-    <div className="body">
+    <div className="space-y-6 px-4 md:px-6 lg:px-8">
+  
       <Button data={listOfRestaurants} func={setListOfRestaurants} />
+
       <Search
         original={original}
         data={listOfRestaurants}
         func={setListOfRestaurants}
       />
+
+
       <CardContainer data={listOfRestaurants} />
     </div>
   );

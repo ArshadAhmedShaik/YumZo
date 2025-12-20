@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 
 const useOnlineStatus = () => {
@@ -17,6 +15,7 @@ const useOnlineStatus = () => {
       window.removeEventListener("offline", handleOffline);
       window.removeEventListener("online", handleOnline);
     };
+    
   }, []);
 
   return onlineStatus;

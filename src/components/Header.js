@@ -1,17 +1,15 @@
-import Logo from "./Logo.js";
-import NavItems from "./NavItems.js";
-import LoginLogout from "./LoginLogout.js";
+import Logo from "./Logo";
+import NavItems from "./NavItems";
+import LoginLogout from "./LoginLogout";
 
 const Header = () => {
-
   return (
-    <div className="header">
+    <header className="h-16 px-6 flex items-center justify-between bg-gray-900 shadow-md">
       <Logo />
       <NavItems />
       <LoginLogout />
-    </div>
+    </header>
   );
 };
 
 export default Header;
-
