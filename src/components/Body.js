@@ -6,11 +6,16 @@ import useListOfRestaurants from "../utils/useListOfRestaurants.js";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
+  
   const onlineStatus = useOnlineStatus();
   const data = useListOfRestaurants();
   const original = data[0];
   const listOfRestaurants = data[2];
   const setListOfRestaurants = data[3];
+
+  // console.log("ListOfRestaurants: ", listOfRestaurants[3]?.info?.availability?.opened);
+
+
 
 
   if (!onlineStatus) {

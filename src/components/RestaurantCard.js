@@ -22,7 +22,6 @@ const RestaurantCard = ({
       className={`block transform transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${className}`}
     >
       <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col h-full">
-        
         <img
           className="w-full h-40 object-cover shrink-0"
           src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
@@ -31,8 +30,12 @@ const RestaurantCard = ({
 
         <div className="p-4 flex flex-col justify-between flex-1">
           <div className="space-y-1">
-            <h3 className="text-lg font-semibold text-gray-800 truncate">{name}</h3>
-            <h4 className="text-sm text-gray-500 truncate">{cuisines.join(", ")}</h4>
+            <h3 className="text-lg font-semibold text-gray-800 truncate">
+              {name}
+            </h3>
+            <h4 className="text-sm text-gray-500 truncate">
+              {cuisines.join(", ")}
+            </h4>
             <div className="text-sm text-gray-600 flex flex-wrap gap-2">
               <span>Area: {areaName}</span>
               <span>Locality: {locality}</span>
@@ -48,6 +51,34 @@ const RestaurantCard = ({
       </div>
     </Link>
   );
+};
+
+export const withOpenLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <span className="absolute top-2 left-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded shadow-md">
+          Open 
+        </span>
+
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
+export const withClosedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <span className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow-md">
+          Closed
+        </span>
+
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;

@@ -2585,7 +2585,7 @@
                                             },
                                             "availability": {
                                                 "nextCloseTime": "2025-12-08 23:00:00",
-                                                "opened": true
+                                                "opened": false
                                             },
                                             "badges": {},
                                             "isOpen": true,
@@ -2664,7 +2664,7 @@
                                             },
                                             "availability": {
                                                 "nextCloseTime": "2025-12-08 23:59:00",
-                                                "opened": true
+                                                "opened": false
                                             },
                                             "badges": {},
                                             "isOpen": true,
@@ -3024,7 +3024,7 @@
                                             },
                                             "availability": {
                                                 "nextCloseTime": "2025-12-08 22:15:00",
-                                                "opened": true
+                                                "opened": false
                                             },
                                             "badges": {
                                                 "imageBadges": [
