@@ -1,9 +1,12 @@
+import { useContext } from "react";
+
 import CardContainer from "./CardContainer.js";
 import Button from "./Button.js";
 import Shimmer from "./Shimmer.js";
 import Search from "./Search.js";
 import useListOfRestaurants from "../utils/useListOfRestaurants.js";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
+import UserContext from "../utils/UserContext.js";
 
 const Body = () => {
   
@@ -15,6 +18,7 @@ const Body = () => {
 
   // console.log("ListOfRestaurants: ", listOfRestaurants[3]?.info?.availability?.opened);
 
+  const userData = useContext(UserContext);
 
 
 
@@ -47,12 +51,22 @@ const Body = () => {
   
       <Button data={listOfRestaurants} func={setListOfRestaurants} />
 
+      <div className="flex items-center gap-2">
+        <h1 className="text-md font-semibold">UserName: </h1>
+
+        <input placeholder="UserName" value={userData.loggedInUser} onChange={
+          (event) => {
+              userData.setUserName(event.target.value);
+          }
+        }  type="text" className="px-3 py-1.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all" />
+
+      </div>
+
       <Search
         original={original}
         data={listOfRestaurants}
         func={setListOfRestaurants}
       />
-
 
       <CardContainer data={listOfRestaurants} />
     </div>

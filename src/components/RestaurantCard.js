@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+
+
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = ({
   resData: {
@@ -16,6 +20,10 @@ const RestaurantCard = ({
   },
   className = "",
 }) => {
+
+  const data = useContext(UserContext);
+
+
   return (
     <Link
       to={`/restaurant/${id}`}
@@ -33,6 +41,7 @@ const RestaurantCard = ({
             <h3 className="text-lg font-semibold text-gray-800 truncate">
               {name}
             </h3>
+            <h3>User: {data.loggedInUser}</h3>
             <h4 className="text-sm text-gray-500 truncate">
               {cuisines.join(", ")}
             </h4>

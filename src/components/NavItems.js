@@ -37,6 +37,10 @@ const NavItems = () => {
         <Link to="/grocery">Grocery</Link>
       </li>
 
+      <li className={navItemClasses}>
+        <Link to="/practice">Practice</Link>
+      </li>
+
       {/* Cart */}
       <li
         className={`${navItemClasses} flex items-center gap-1 cursor-pointer`}

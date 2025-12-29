@@ -2,7 +2,7 @@ import { useState } from "react";
 import RestaurantCategory from "./RestaurantCategory";
 
 const ItemCategoryContainer = (props) => {
-
+  
   const [showIndex, setShowIndex] = useState(-1);
 
   const cards =
@@ -18,17 +18,18 @@ const ItemCategoryContainer = (props) => {
   return (
     <div className="space-y-4 py-10">
       {filtered.map((data, index) => (
-        // controlled-Component
-
+        
         <RestaurantCategory
           key={data?.card?.card?.categoryId}
           data={data}
           showItems={index === showIndex ? true : false}
           showIndex={showIndex}
-          setShowIndex={setShowIndex}
+          setShowIndex={(index) => {
+            setShowIndex(index);
+          }}
           index={index}
         />
-
+        
       ))}
     </div>
   );
