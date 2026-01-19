@@ -2,8 +2,9 @@ import mainData from "../utils/mainData.json";
 import { useState, useEffect } from "react";
 
 const useListOfRestaurants = () => {
+  
   const [original, setOriginal] = useState([]);
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [ listOfRestaurants, setListOfRestaurants ] = useState([]);
 
   useEffect(() => {
     fetchData();

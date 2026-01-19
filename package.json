@@ -14,14 +14,16 @@
   "author": "Arshad",
   "type": "module",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "start": "rm -rf dist-dev .parcel-cache && parcel --dist-dir dist-dev index.html",
+    "build": "rm -rf dist .parcel-cache && parcel build index.html",
     "test": "jest"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
     "@tailwindcss/postcss": "^4.1.18",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "6.13",
     "tailwindcss": "^4.1.18"
   },

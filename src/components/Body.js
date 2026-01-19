@@ -21,7 +21,6 @@ const Body = () => {
   const userData = useContext(UserContext);
 
 
-
   if (!onlineStatus) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">

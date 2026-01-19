@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
@@ -10,6 +11,8 @@ import Footer from "./components/Footer.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import Practice from "./components/Practice.js";
 import UserContext from "./utils/UserContext.js";
+import appStore from "./utils/appStore.js";
+import Cart from "./components/cart.js";
 
 const Loading = () => {
   return (
@@ -37,7 +40,6 @@ const AppLayout = () => {
   const [userName, setUserName] = useState();
 
   useEffect(() => {
-    
     // Make an API call and send username and password
 
     const data = {
@@ -47,23 +49,23 @@ const AppLayout = () => {
     setUserName(data.name);
   }, []);
 
-  return (
-    <UserContext.Provider
-      value={{
-        loggedInUser: userName,
-        setUserName
-      }}
-    >
-      <div className="min-h-screen flex flex-col bg-gray-100">
-        <Header />
+  return (  
+      <UserContext.Provider
+        value={{
+          loggedInUser: userName,
+          setUserName,
+        }}
+      >
+        <div className="min-h-screen flex flex-col bg-gray-100">
+          <Header />
 
-        <main className="flex-1 px-6 py-4">
-          <Outlet />
-        </main>
+          <main className="flex-1 px-6 py-4">
+            <Outlet />
+          </main>
 
-        <Footer />
-      </div>
-    </UserContext.Provider>
+          <Footer />
+        </div>
+      </UserContext.Provider>
   );
 };
 
@@ -104,10 +106,18 @@ const appRouter = createBrowserRouter([
         path: "/practice",
         element: <Practice />,
       },
+      {
+        path: "/cart",
+        element: <Cart />
+      }
     ],
     errorElement: <Error />,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+  <Provider store={appStore}>
+    <RouterProvider router={appRouter} />
+  </Provider>
+);

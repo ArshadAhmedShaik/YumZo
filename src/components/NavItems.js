@@ -1,9 +1,18 @@
 import { CART_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
+
 
 const NavItems = () => {
   const onlineStatus = useOnlineStatus();
+
+  // We are subscribing to the store using our selector
+
+  const cart = useSelector((store) => {
+    return store.cart.items;
+  });
+
 
   const navItemClasses =
     "px-3 py-1.5 rounded-lg text-sm font-medium bg-white/90 shadow-sm " +
@@ -12,11 +21,13 @@ const NavItems = () => {
 
   return (
     <ul className="flex items-center gap-4">
-
-     
       <li
         className={`px-3 py-1.5 rounded-lg text-sm font-medium shadow-sm 
-        ${onlineStatus ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+        ${
+          onlineStatus
+            ? "bg-green-100 text-green-800"
+            : "bg-red-100 text-red-800"
+        }`}
       >
         {onlineStatus ? "🟢 Online" : "🔴 Offline"}
       </li>
@@ -41,14 +52,15 @@ const NavItems = () => {
         <Link to="/practice">Practice</Link>
       </li>
 
-      {/* Cart */}
-      <li
-        className={`${navItemClasses} flex items-center gap-1 cursor-pointer`}
-      >
-        <img className="w-5 h-5" src={CART_URL} alt="cart" />
-        <span>Cart</span>
-      </li>
-
+  
+      <Link to="/cart">
+        <li
+          className={`${navItemClasses} flex items-center gap-1 cursor-pointer`}
+        >
+          <img className="w-5 h-5" src={CART_URL} alt="cart" />
+          <span>Cart ({cart.length} items)</span>
+        </li>
+      </Link>
     </ul>
   );
 };
